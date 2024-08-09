@@ -1,7 +1,21 @@
 Chat Application.
 Welcome to The WebSocket Chat App. This App is designed for multiple users to be able to chat back and forth.
 1. SignIn/HomePage: Displays a text box for that is indicated by the title username and a Login button. The login button will direct you to the chatroom after you have entered a username longer than 6 characters
-2. ChatRoom: The Chatroom is where the user will be able to send and recieve messages. Simply type your message into the textbox and hit enter to send. The button located at the top of the screen will return you to the homepage. 
+2. ChatRoom: The Chatroom is where the user will be able to send and recieve messages. Simply type your message into the textbox and hit enter to send. The button located at the top of the screen will return you to the homepage.
+
+- Installation and Setup
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/cmattr/Chat-Application-Project.git
+    ```
+2. Navigate to the project directory:
+```sh
+  cd Chat-Application-Project
+```
+3. In the terminal Use this code to start the application.
+```sh
+  npm start
+```
 
 
 # Getting Started with Create React App
