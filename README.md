@@ -1,3 +1,9 @@
+Chat Application.
+Welcome to The WebSocket Chat App. This App is designed for multiple users to be able to chat back and forth.
+1. SignIn/HomePage: Displays a text box for that is indicated by the title username and a Login button. The login button will direct you to the chatroom after you have entered a username longer than 6 characters
+2. ChatRoom: The Chatroom is where the user will be able to send and recieve messages. Simply type your message into the textbox and hit enter to send. The button located at the top of the screen will return you to the homepage. 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
