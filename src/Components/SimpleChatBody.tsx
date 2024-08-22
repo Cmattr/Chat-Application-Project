@@ -64,3 +64,4 @@ const ChatProvider: React.FC<SimpleChatBodyProps> = ({ socket }) => {
 };
 
 export default ChatProvider;
+
