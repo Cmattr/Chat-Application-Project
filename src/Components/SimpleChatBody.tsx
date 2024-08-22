@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
-
+import { Card, Container, Button } from "react-bootstrap";
 
 type Message = {
+    id: string;
     text: string;
     userId: string;
+    timestamp: string;
 };
 
 type SimpleChatBodyProps = {
@@ -12,14 +13,25 @@ type SimpleChatBodyProps = {
 };
 
 const ChatProvider: React.FC<SimpleChatBodyProps> = ({ socket }) => {
-    const [messages, setMessages] = useState([] as any);
+    const [messages, setMessages] = useState([] as Message[]);
     const userID = sessionStorage.getItem("userName");
 
     useEffect(() => {
-        socket.on("message", (message: Message) => {
-            setMessages([...messages, message]);
-        });
-    }, [socket, messages, userID]);
+        const handleMessage = (message: Message) => {
+            setMessages((prevMessages) => [...prevMessages, message]);
+        };
+
+        socket.on("message", handleMessage);
+
+        // Cleanup the socket connection when the component unmounts
+        return () => {
+            socket.off("message", handleMessage);
+        };
+    }, [socket]);
+
+    const handleDelete = (id: string) => {
+        setMessages((prevMessages) => prevMessages.filter((message) => message.id !== id));
+    };
 
     return (
         <Container
@@ -30,12 +42,20 @@ const ChatProvider: React.FC<SimpleChatBodyProps> = ({ socket }) => {
                 borderRadius: '10px'
             }}
         >
-            {messages.map((message: Message, index: any) => (
+            {messages.map((message, index) => (
                 <Card key={index} className="mb-2">
                     <Card.Body>
-                        <Card.Text style={({color:message.userId === userID? 'blue' : 'green', float: message.userId === userID ? 'right' : 'left'})}>
-                            {message.text}
+                        <Card.Text style={{
+                            color: message.userId === userID ? 'blue' : 'green', 
+                            float: message.userId === userID ? 'left' : 'right'
+                        }}>
+                            <strong>{message.userId}:</strong> {message.text}
+                            <br />
+                            <small style={{ color: 'gray', float: 'right' }}>{message.timestamp}</small>
                         </Card.Text>
+                        <Button variant="danger" size="sm" onClick={() => handleDelete(message.id)}>
+                            Delete
+                        </Button>
                     </Card.Body>
                 </Card>
             ))}
