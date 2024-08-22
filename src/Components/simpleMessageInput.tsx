@@ -10,11 +10,15 @@ const MessageInput: React.FC<MessageInputProps> = ({ socket }) => {
 
     const sendMessage = () => {
         const userId = sessionStorage.getItem("userName");
+        const timestamp = new Date().toLocaleTimeString();
+        const id = Date.now().toString(); 
+    
         if (userId) {
-            socket.emit("message", { userId, text: messageText });
+            socket.emit("message", { id, userId, text: messageText, timestamp });
             setMessageText(""); 
         }
     };
+    
 
     const handleEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
