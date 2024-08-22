@@ -15,5 +15,6 @@ def handle_message(message):
     print(f"Received message: {message}")
     socketio.emit('message', message)
 
+
 if __name__ == '__main__':
     socketio.run(app)

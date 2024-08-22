@@ -13,4 +13,5 @@ class WebSocketServer:
 
         app.debug = debug
         socketio.init_app(app, cors_allowed_origins="*")
+        
         return app
