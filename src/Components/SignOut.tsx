@@ -15,7 +15,7 @@ const Signout: React.FC<SignOutProps> = ({socket, children}) => {
     }
 
     return (
-        <Button onClick={handleSignout}><i className="bi bi-box-arrow-in-left"></i></Button>
+        <Button onClick={handleSignout}>Log Out <i className="bi bi-box-arrow-in-left"></i></Button>
     );
 }
 
